@@ -8,4 +8,5 @@ pip
 pillow
 pypdf2
 openpyxl
+ipywidgets
 
