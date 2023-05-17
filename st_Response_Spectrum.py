@@ -40,11 +40,9 @@ x = np.linspace(0.01,T_max , 200)
 # Create the plot
 fig, ax = plt.subplots()
 for k in GroundType:
-<<<<<<< HEAD
+
     ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type), label=k)
-=======
-    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=2), label=k)
->>>>>>> 53a3017a755c679da00229abcaf38c0386c8611c
+
     ax.legend()
     ax.set_title(Dir)
     
