@@ -29,7 +29,7 @@ options=["A","B","C","D","E"]
 default_options = options  # Set all options as default
 GroundType=st.multiselect("Select options:", options, default=default_options)
 
-a_g=st.number_input("a_g", value= 0.5, min_value=0.0, step=0.1, format="%.3f")
+a_g=st.number_input("a_g [$m/s^2$]", value= 0.5, min_value=0.0, step=0.1, format="%.3f")
 
 st.write("Period T(s)")
 
