@@ -21,7 +21,7 @@ Dir=st.radio("Select Direction:", ("Horizontal", "Vertical"))
 
 st.write("**Response Spectrum:**")
 RS_Type = st.selectbox("Response Spectrum Type", ["Type 1", "Type 2"], index=0)
-value = 1 if RS_Type == "Type 1" else 2
+RS_Type_value = 1 if RS_Type == "Type 1" else 2
 
 
 st.write("Ground Type: ")
@@ -42,7 +42,7 @@ x = np.linspace(0.01,T_max , 200)
 fig, ax = plt.subplots()
 for k in GroundType:
 
-    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type), label=k)
+    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
 
     ax.legend()
     ax.set_title(Dir)
@@ -58,7 +58,7 @@ st.pyplot(fig)
 file_paths = []
 
 for k in GroundType:
-        df=pd.DataFrame({'Amplitude':RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type)*9.81,'Frequency':(1/x),'Damping':0})
+        df=pd.DataFrame({'Amplitude':RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81,'Frequency':(1/x),'Damping':0})
         df=df.drop('Damping', axis=1)
         df=df.sort_values(by=['Frequency']).round(5)
         st.write("Ground type ", k)
