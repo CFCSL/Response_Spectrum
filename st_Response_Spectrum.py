@@ -9,7 +9,7 @@ import pandas as pd
 import streamlit as st
 import Response_Spectrum as RS
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot # as plt
 import zipfile
 from io import BytesIO
 
