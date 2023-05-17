@@ -20,7 +20,7 @@ Dir=st.radio("Select Direction:", ("Horizontal", "Vertical"))
 
 
 st.write("**Response Spectrum:**")
-RS_Type=st.radio("Response Spectrum Type",[("Type 1", 1), ("Type 2", 2)])
+RS_Type=st.radio("Response Spectrum Type",("1","2"))
 
 
 st.write("Ground Type: ")
