@@ -20,7 +20,7 @@ Dir=st.radio("Select Direction:", ("Horizontal", "Vertical"))
 
 
 st.write("**Response Spectrum:**")
-RS_Type = st.selectbox("Response Spectrum Type", ["Type 1", "Type 2"], index=0)
+RS_Type = st.radio("Response Spectrum Type", ["Type 1", "Type 2"], index=0)
 RS_Type_value = 1 if RS_Type == "Type 1" else 2
 
 
