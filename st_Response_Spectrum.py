@@ -25,7 +25,8 @@ RS_Type=st.radio("Response Spectrum Type",("Type 1", "Type 2"))
 
 st.write("Ground Type: ")
 options=["A","B","C","D","E"]
-GroundType=st.multiselect("Select options:", options)
+default_options = options  # Set all options as default
+GroundType=st.multiselect("Select options:", options, default=default_options)
 
 
 st.write("Period T(s)")
