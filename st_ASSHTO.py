@@ -63,7 +63,7 @@ st.pyplot(fig)
 file_paths = []
 
 for k in SiteClass:
-        df=pd.DataFrame({'C_sm':RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k),'Period':(1/x)})
+        df=pd.DataFrame({'C_sm':RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k),'Period':(x)})
         df=df.sort_values(by=['Period']).round(5)
         st.write("Siite Class", k)
         file_path = 'RS_ASSHTO' + '_' + str(k) + '.csv'
