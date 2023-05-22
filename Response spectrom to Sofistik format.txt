@@ -1,0 +1,16 @@
++PROG SOFILOAD
+HEAD 'Definition of response spectrum'
+UNIT 5 $ units: sections in mm, geometry+loads in m
+
+lc no 101 type none titl 'Sa(T)-SOIL C'
+resp type user mod 5[%] ag 10
+ACCE DIR AX 1
+FUNC    T      F
+0.1	0.23
+0.2	0.35
+.	.
+.	.
+.	.
+6	0.5
+
+END           
