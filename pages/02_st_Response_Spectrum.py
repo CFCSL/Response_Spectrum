@@ -59,16 +59,16 @@ st.pyplot(fig)
 
 
 # Create an empty dataframe
-df = pd.DataFrame({'Frequency[1/s]': (1/x)})
+df = pd.DataFrame({'Period[s]': x})
 
 
 #%%
 
 for k in GroundType:
-	df_k=pd.DataFrame({'Frequency[1/s]':(1/x),'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	
 	# Merge df and df_k on the "Frequency[1/s]" column
-	df = pd.merge(df, df_k, on="Frequency[1/s]")
+	df = pd.merge(df, df_k, on="Period[s]")
 	
 # Round all float columns to three decimal places
 df=df.round(3)
