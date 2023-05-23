@@ -113,7 +113,7 @@ def download_text():
 
     # Create the download link
     b64 = base64.b64encode(buffer.read()).decode()
-    href = f'<a href="data:text/plain;base64,{b64}" download="E8_SOFISTIK.txt">Download Text</a>'
+    href = f'<a href="data:text/plain;base64,{b64}" download="RS_E8_SOFISTIK.txt">Download Text</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 download_text()
