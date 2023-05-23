@@ -87,7 +87,7 @@ def download_csv():
     
     # Encode and create the download link
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="ASSHTO_SOFISTIK.csv">Download CSV</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="RS_ASSHTO.csv">Download CSV</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 download_csv()
@@ -120,7 +120,7 @@ def download_text():
 
     # Create the download link
     b64 = base64.b64encode(buffer.read()).decode()
-    href = f'<a href="data:text/plain;base64,{b64}" download="combined_text.txt">Download Text</a>'
+    href = f'<a href="data:text/plain;base64,{b64}" download="RS_ASSHTO_SOFISTIK.txt">Download Text</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 download_text()
