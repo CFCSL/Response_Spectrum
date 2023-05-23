@@ -13,6 +13,7 @@ import pandas as pd
 from ipywidgets import interact, interactive, fixed, interact_manual
 import ipywidgets as widgets
 
+
 #%% EuroCode8
 
 def EC8(T,ag=0.5,GroundType='A',Eta=1,Dir='Horizontal',RS_Type=1):
@@ -50,62 +51,6 @@ def EC8(T,ag=0.5,GroundType='A',Eta=1,Dir='Horizontal',RS_Type=1):
 	funcList=[lambda T: aa*S*(1+(T/TB)*(Eta*_dir_coeff-1)),lambda T: aa*S*Eta*_dir_coeff,lambda T: aa*S*Eta*_dir_coeff*(TC/T),lambda T: aa*S*Eta*_dir_coeff*((TC*T)/T**2)]
 	Amp=np.piecewise(T, condList, funcList)
 	return Amp
-
-
-## Eurocode Elastic Design Spectrum (Type 1):
-
-x = np.linspace(0, 10, 200)
-#plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A')
-#plt.plot(x,seismic.EC8(x,GroundType='B',Dir='Horizontal',RS_Type=1),label='B')
-#plt.plot(x,seismic.EC8(x,GroundType='C',Dir='Horizontal',RS_Type=1),label='C')
-#plt.plot(x,seismic.EC8(x,GroundType='D',Dir='Horizontal',RS_Type=1),label='D')
-#plt.plot(x,seismic.EC8(x,GroundType='E',Dir='Horizontal',RS_Type=1),label='E')
-
-plt.plot(x,EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A')
-plt.plot(x,EC8(x,GroundType='B',Dir='Horizontal',RS_Type=1),label='B')
-plt.plot(x,EC8(x,GroundType='C',Dir='Horizontal',RS_Type=1),label='C')
-plt.plot(x,EC8(x,GroundType='D',Dir='Horizontal',RS_Type=1),label='D')
-plt.plot(x,EC8(x,GroundType='E',Dir='Horizontal',RS_Type=1),label='E')
-plt.legend()
-plt.show()
-
-
-## Eurocode Elastic Design Spectrum (Type 2):
-
-x = np.linspace(0.01, 10, 200)
-#plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=2),label='A')
-#plt.plot(x,seismic.EC8(x,GroundType='B',Dir='Horizontal',RS_Type=2),label='B')
-#plt.plot(x,seismic.EC8(x,GroundType='C',Dir='Horizontal',RS_Type=2),label='C')
-#plt.plot(x,seismic.EC8(x,GroundType='D',Dir='Horizontal',RS_Type=2),label='D')
-#plt.plot(x,seismic.EC8(x,GroundType='E',Dir='Horizontal',RS_Type=2),label='E')
-
-plt.plot(x,EC8(x,GroundType='A',Dir='Horizontal',RS_Type=2),label='A')
-plt.plot(x,EC8(x,GroundType='B',Dir='Horizontal',RS_Type=2),label='B')
-plt.plot(x,EC8(x,GroundType='C',Dir='Horizontal',RS_Type=2),label='C')
-plt.plot(x,EC8(x,GroundType='D',Dir='Horizontal',RS_Type=2),label='D')
-plt.plot(x,EC8(x,GroundType='E',Dir='Horizontal',RS_Type=2),label='E')
-plt.legend()
-plt.show()
-
-## Eurocode Elastic Design Spectrum (Type 1 & 2 -Vertical):
-## Vertical is similar for all Soil types
-x = np.linspace(0, 10, 200)
-#plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Vertical',RS_Type=1),label='Type 1')
-#plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Vertical',RS_Type=2),label='Type 2')
-
-plt.plot(x,EC8(x,GroundType='A',Dir='Vertical',RS_Type=1),label='Type 1')
-plt.plot(x,EC8(x,GroundType='A',Dir='Vertical',RS_Type=2),label='Type 2')
-plt.legend()
-plt.show()
-
-
-## Export the RS to csv in Abaqus input format¶
-#A=pd.DataFrame({'Amplitude':seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1)*9.81,'Frequency':(1/x),'Damping':0})
-
-A=pd.DataFrame({'Amplitude':EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1)*9.81,'Frequency':(1/x),'Damping':0})
-A=A.sort_values(by=['Frequency']).round(5)
-A.to_csv('RS_EC8_A_Horizontal.inp',index=False,header=False)
-
 
 
 
@@ -184,20 +129,8 @@ def ASSHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	return C_sm
 
 
-#%% apply ASSHTO to plot
-x = np.linspace(0, 10, 200)
-
-plt.plot(x,ASSHTO(x,PGA=0.1,S_S=0.75, S_1=1.0, SiteClass="C" ),label='SiteClass=C')
-plt.legend()
-plt.show()
 
 
-## Export the RS to csv in Abaqus input format¶
-#A=pd.DataFrame({'Amplitude':seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1)*9.81,'Frequency':(1/x),'Damping':0})
-
-C_sm=pd.DataFrame({'ElasticSeismicCoef':ASSHTO(x,PGA=0.55,S_S=0.75, S_1=1, SiteClass="C" ),'Period':(x)})
-C_sm=C_sm.sort_values(by=['Period']).round(4)
-C_sm.to_csv('ElasticSeismicCoef',index=False,header=False)
 
 #%% Export to SOFISTIK and to ABAQUS
 
