@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot  as plt
 import zipfile
 from io import BytesIO
+import base64
 
 
 
@@ -62,21 +63,68 @@ st.pyplot(fig)
 # Create an empty list to store the file paths
 file_paths = []
 
+
+# Create an empty dataframe
+df = pd.DataFrame({'Period[s]': x})
+
+# Iterate over SiteClass
 for k in SiteClass:
-        df=pd.DataFrame({'C_sm':RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k),'Period':(x)})
-        df=df.sort_values(by=['Period']).round(5)
-        st.write("Siite Class", k)
-        file_path = 'RS_ASSHTO' + '_' + str(k) + '.csv'
-        df.to_csv(file_path, index=False, header=False)
-        st.write(df)
-        file_paths.append(file_path)
-# Create a zip file in memory
-zip_file = BytesIO()
-with zipfile.ZipFile(zip_file, 'w') as zipf:
-    for file_path in file_paths:
-        zipf.write(file_path)
+    # Create dataframe df_k for the current SiteClass
+    df_k = pd.DataFrame({'Period[s]': x,
+                         "C_sm"+"-"+str(k): RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
 
-# Download the zip file
-zip_file.seek(0)
-st.download_button(label='Download CSV Files as ZIP', data=zip_file, file_name='files.zip')
+    
+    # Merge df and df_k on the "Period" column
+    df = pd.merge(df, df_k, on="Period[s]")
 
+# Round all float columns to four decimal places
+df = df.round(4)
+
+# Display the merged dataframe
+st.write(df)
+
+# Create a button for downloading the dataframe as CSV
+def download_csv():
+
+    # Convert the rounded dataframe to CSV
+    csv = df.to_csv(index=False, float_format='%.4f')
+    
+    # Encode and create the download link
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="RS_ASSHTO.csv">Download CSV</a>'
+    st.markdown(href, unsafe_allow_html=True)
+
+download_csv()
+
+
+text = '\n'.join([
+     "+PROG SOFILOAD",'\n',
+     "HEAD 'Definition of response spectrum'",'\n',
+     "UNIT 5 $ units: sections in mm, geometry+loads in m",'\n',
+     "",
+     "lc no 101 type none titl 'Sa(T)-SOIL C'",'\n',
+     "resp type user mod 5[%] ag 10",'\n',
+     "ACCE DIR AX 1",'\n',
+     "FUNC   "
+ ])
+
+
+# Concatenate the existing text and the DataFrame
+combined_text = text + '\n\n' + df.to_string(index=False, col_space=3)+ '\n\n'+ "END"
+
+
+
+
+def download_text():
+    # Create a BytesIO object and write the combined text to it
+    text_bytes = combined_text.encode('utf-8')
+    buffer = BytesIO()
+    buffer.write(text_bytes)
+    buffer.seek(0)
+
+    # Create the download link
+    b64 = base64.b64encode(buffer.read()).decode()
+    href = f'<a href="data:text/plain;base64,{b64}" download="combined_text.txt">Download Text</a>'
+    st.markdown(href, unsafe_allow_html=True)
+
+download_text()
