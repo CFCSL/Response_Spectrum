@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot  as plt
 import zipfile
 from io import BytesIO
+import base64
 
 
 
@@ -38,7 +39,6 @@ st.write("select the range of T(s) to plot:")
 T_max=st.number_input("T_max(s)", value= 10., min_value=1., step=1., format="%.3f")
 x = np.linspace(0.01,T_max , 200)
 
-
 # Create the plot
 fig, ax = plt.subplots()
 for k in GroundType:
@@ -55,27 +55,71 @@ ax.set_ylabel('$S_e/a_g$')
 # Display the plot in Streamlit
 st.pyplot(fig)
 
-# Create an empty list to store the file paths
-file_paths = []
+
+
+# Create an empty dataframe
+df = pd.DataFrame({'Frequency[1/s]': (1/x)})
+
+
+#%%
 
 for k in GroundType:
-        df=pd.DataFrame({'Amplitude':RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81,'Frequency':(1/x),'Damping':0})
-        df=df.drop('Damping', axis=1)
-        df=df.sort_values(by=['Frequency']).round(5)
-        st.write("Ground type ", k)
-        file_path = 'RS_EC8' + '_' + str(k) + '_' + str(Dir) + '.csv'
-        df.to_csv(file_path, index=False, header=False)
-        st.write(df)
-        file_paths.append(file_path)
-# Create a zip file in memory
-zip_file = BytesIO()
-with zipfile.ZipFile(zip_file, 'w') as zipf:
-    for file_path in file_paths:
-        zipf.write(file_path)
+	df_k=pd.DataFrame({'Frequency[1/s]':(1/x),'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	
+	# Merge df and df_k on the "Frequency[1/s]" column
+	df = pd.merge(df, df_k, on="Frequency[1/s]")
+	
+# Round all float columns to three decimal places
+df=df.round(3)
+st.write(df)
 
-# Download the zip file
-zip_file.seek(0)
-st.download_button(label='Download CSV Files as ZIP', data=zip_file, file_name='files.zip')
+def download_csv():
+
+    # Convert the rounded dataframe to CSV
+    csv = df.to_csv(index=False, float_format='%.3f')
+    
+    # Encode and create the download link
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="RS_E8.csv">Download CSV</a>'
+    st.markdown(href, unsafe_allow_html=True)
+
+download_csv()
+
+
+text = '\n'.join([
+     "+PROG SOFILOAD",'\n',
+     "HEAD 'Definition of response spectrum'",'\n',
+     "UNIT 5 $ units: sections in mm, geometry+loads in m",'\n',
+     "",
+     "lc no 101 type none titl 'Sa(T)-SOIL C'",'\n',
+     "resp type user mod 5[%] ag 10",'\n',
+     "ACCE DIR AX 1",'\n',
+     "FUNC   "
+ ])
+
+
+# Concatenate the existing text and the DataFrame
+combined_text = text + '\n\n' + df.to_string(index=False, col_space=3)+ '\n\n'+ "END"
+
+
+
+
+def download_text():
+    # Create a BytesIO object and write the combined text to it
+    text_bytes = combined_text.encode('utf-8')
+    buffer = BytesIO()
+    buffer.write(text_bytes)
+    buffer.seek(0)
+
+    # Create the download link
+    b64 = base64.b64encode(buffer.read()).decode()
+    href = f'<a href="data:text/plain;base64,{b64}" download="E8_SOFISTIK.txt">Download Text</a>'
+    st.markdown(href, unsafe_allow_html=True)
+
+download_text()
+
+
+
 
 
 

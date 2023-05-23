@@ -60,9 +60,6 @@ ax.set_ylabel('$C_{sm}$')
 # Display the plot in Streamlit
 st.pyplot(fig)
 
-# Create an empty list to store the file paths
-file_paths = []
-
 
 # Create an empty dataframe
 df = pd.DataFrame({'Period[s]': x})
@@ -73,7 +70,6 @@ for k in SiteClass:
     df_k = pd.DataFrame({'Period[s]': x,
                          "C_sm"+"-"+str(k): RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
 
-    
     # Merge df and df_k on the "Period" column
     df = pd.merge(df, df_k, on="Period[s]")
 
@@ -91,7 +87,7 @@ def download_csv():
     
     # Encode and create the download link
     b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="RS_ASSHTO.csv">Download CSV</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="ASSHTO_SOFISTIK.csv">Download CSV</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 download_csv()
