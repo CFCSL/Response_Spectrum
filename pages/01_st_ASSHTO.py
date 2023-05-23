@@ -8,6 +8,7 @@ Created on Mon May 22 13:20:10 2023
 import pandas as pd
 import streamlit as st
 import Response_Spectrum as RS
+import helper_functions as hf
 import numpy as np
 import matplotlib.pyplot  as plt
 import zipfile
@@ -61,66 +62,26 @@ ax.set_ylabel('$C_{sm}$')
 st.pyplot(fig)
 
 
+
 # Create an empty dataframe
 df = pd.DataFrame({'Period[s]': x})
-
-# Iterate over SiteClass
+list_df=[]
+# create interations
 for k in SiteClass:
-    # Create dataframe df_k for the current SiteClass
-    df_k = pd.DataFrame({'Period[s]': x,
+	df_k = pd.DataFrame({'Period[s]': x,
                          "C_sm"+"-"+str(k): RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
+	# Round all float columns to four decimal places
+	df_k=df_k.round(4)
+	# Merge df and df_k on the "Frequency[1/s]" column
+	df = pd.merge(df, df_k, on="Period[s]")
+	# Append the df_k into the list
+	list_df=list_df.append(df_k)
 
-    # Merge df and df_k on the "Period" column
-    df = pd.merge(df, df_k, on="Period[s]")
-
-# Round all float columns to four decimal places
-df = df.round(4)
-
-# Display the merged dataframe
 st.write(df)
 
-# Create a button for downloading the dataframe as CSV
-def download_csv():
-
-    # Convert the rounded dataframe to CSV
-    csv = df.to_csv(index=False, float_format='%.4f')
-    
-    # Encode and create the download link
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="RS_ASSHTO.csv">Download CSV</a>'
-    st.markdown(href, unsafe_allow_html=True)
-
-download_csv()
-
-
-text = '\n'.join([
-     "+PROG SOFILOAD",'\n',
-     "HEAD 'Definition of response spectrum'",'\n',
-     "UNIT 5 $ units: sections in mm, geometry+loads in m",'\n',
-     "",
-     "lc no 101 type none titl 'Sa(T)-SOIL C'",'\n',
-     "resp type user mod 5[%] ag 10",'\n',
-     "ACCE DIR AX 1",'\n',
-     "FUNC   "
- ])
-
-
-# Concatenate the existing text and the DataFrame
-combined_text = text + '\n\n' + df.to_string(index=False, col_space=3)+ '\n\n'+ "END"
+# Download CSV
+hf.download_csv(df)
+hf.dowload_sofistik(list_df)
 
 
 
-
-def download_text():
-    # Create a BytesIO object and write the combined text to it
-    text_bytes = combined_text.encode('utf-8')
-    buffer = BytesIO()
-    buffer.write(text_bytes)
-    buffer.seek(0)
-
-    # Create the download link
-    b64 = base64.b64encode(buffer.read()).decode()
-    href = f'<a href="data:text/plain;base64,{b64}" download="RS_ASSHTO_SOFISTIK.txt">Download Text</a>'
-    st.markdown(href, unsafe_allow_html=True)
-
-download_text()

@@ -8,7 +8,7 @@ Created on Fri May 12 13:53:20 2023
 import pandas as pd
 import streamlit as st
 import Response_Spectrum as RS
-import help_functions as hf
+import helper_functions as hf
 import numpy as np
 import matplotlib.pyplot  as plt
 import zipfile
@@ -57,44 +57,24 @@ ax.set_ylabel('$S_e/a_g$')
 st.pyplot(fig)
 
 
-
 # Create an empty dataframe
 df = pd.DataFrame({'Period[s]': x})
-
-
-#%%
-
+list_df=[]
+# create interations
 for k in GroundType:
 	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
-	
+	# Round all float columns to four decimal places
+	df_k=df_k.round(4)
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
-	
-# Round all float columns to three decimal places
-df=df.round(3)
+	# Append the df_k into the list
+	list_df=list_df.append(df_k)
+
 st.write(df)
 
-
+# Download CSV
 hf.download_csv(df)
-
-
-
-
-# =============================================================================
-# 
-# # Concatenate the existing text and the DataFrame
-# combined_text = text + '\n\n' + df.to_string(index=False, col_space=3)+ '\n\n'+ "END"
-# 
-# 
-# 
-# =============================================================================
-
-
-
-
-
-
-
+hf.dowload_sofistik(list_df)
 
 
 
