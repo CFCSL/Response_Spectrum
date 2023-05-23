@@ -199,6 +199,8 @@ C_sm=pd.DataFrame({'ElasticSeismicCoef':ASSHTO(x,PGA=0.55,S_S=0.75, S_1=1, SiteC
 C_sm=C_sm.sort_values(by=['Period']).round(4)
 C_sm.to_csv('ElasticSeismicCoef',index=False,header=False)
 
+#%% Export to SOFISTIK and to ABAQUS
+
 
 
 
