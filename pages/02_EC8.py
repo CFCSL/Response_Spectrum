@@ -77,7 +77,7 @@ for k in GroundType:
 	
 	
 df=df.round(4)
-df1=df1.sort_values(by=['Frequency']).round(4)
+df1=df1.sort_values(by=['Frequency[1/s]']).round(4)
 st.write(df)
 
 # Download CSV
