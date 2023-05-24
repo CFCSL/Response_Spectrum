@@ -72,7 +72,7 @@ list_df1=[]
 for k in SiteClass:
 	df_k = pd.DataFrame({'Period[s]': x,
                          "C_sm"+"-"+str(k): RS.AASHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
-	df1_k = pd.DataFrame({'Frequency[1/s]': 1/x,
+	df1_k = pd.DataFrame({'Frequency[1/s]': (1/x),
                          "C_sm"+"-"+str(k): RS.AASHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
 
 	# Merge df and df_k on the "Frequency[1/s]" column
