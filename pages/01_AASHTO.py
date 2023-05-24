@@ -65,24 +65,32 @@ st.pyplot(fig)
 
 # Create an empty dataframe
 df = pd.DataFrame({'Period[s]': x})
+df1=pd.DataFrame({'Frequency[1/s]': (1/x)})
 list_df=[]
+list_df1=[]
 # create interations
 for k in SiteClass:
 	df_k = pd.DataFrame({'Period[s]': x,
-                         "C_sm"+"-"+str(k): RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
-	# Round all float columns to four decimal places
-	#df_k=df_k.round(4)
+                         "C_sm"+"-"+str(k): RS.AASHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
+	df1_k = pd.DataFrame({'Frequency[1/s]': 1/x,
+                         "C_sm"+"-"+str(k): RS.AASHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
+
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
+	df1 = pd.merge(df1, df1_k, on="Frequency[1/s]")
+	
 	# Append the df_k into the list
 	list_df.append(df_k)
+	list_df1.append(df1_k)
 
 df=df.round(4)
+df1=df1.sort_values(by=['Frequency']).round(4)
+
 st.write(df)
 
 # Download CSV
 hf.download_csv(df,file_name="AASHTO")
 hf.download_sofistik(list_df,file_name="AASHTO")
-
+hf.download_abaqus(list_df1,file_name="AASHTO")
 
 

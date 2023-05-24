@@ -59,22 +59,31 @@ st.pyplot(fig)
 
 # Create an empty dataframe
 df = pd.DataFrame({'Period[s]': x})
+df1=pd.DataFrame({'Frequency[1/s]': (1/x)})
 list_df=[]
+list_df1=[]
 # create interations
 for k in GroundType:
 	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
-	# Round all float columns to four decimal places
-	#df_k=df_k.round(4)
+	df1_k=pd.DataFrame({'Frequency[1/s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
+	
 	# Append the df_k into the list
+	
 	list_df.append(df_k)
+	list_df1.append(df1_k)
+	
+	
 df=df.round(4)
+df1=df1.sort_values(by=['Frequency']).round(4)
 st.write(df)
 
 # Download CSV
-hf.download_csv(df,file_name="E8")
-hf.download_sofistik(list_df,file_name="E8")
+hf.download_csv(df,file_name="EC8")
+hf.download_sofistik(list_df,file_name="EC8")
+hf.download_abaqus(list_df1,file_name="EC8")
 
 
 

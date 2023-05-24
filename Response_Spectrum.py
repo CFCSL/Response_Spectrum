@@ -57,7 +57,7 @@ def EC8(T,ag=0.5,GroundType='A',Eta=1,Dir='Horizontal',RS_Type=1):
 
 #%% ASSHTO
 
-def ASSHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
+def AASHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	#Turn it into Array:
 	T=np.atleast_1d(T)
 	T=T.astype('float64')
@@ -128,11 +128,6 @@ def ASSHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	
 	return C_sm
 
-
-
-
-
-#%% Export to SOFISTIK and to ABAQUS
 
 
 
