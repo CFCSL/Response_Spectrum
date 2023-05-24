@@ -78,9 +78,10 @@ def download_abaqus(list_df, file_name):
         # Create a string representation of the rounded DataFrame with columns separated by three spaces
         data_csv = df_rounded.to_string(index=False, header=False, col_space=3)
         pattern = r'[A-Z]'
-        result = re.findall(pattern, df.columns[1])
+        result = re.findall(pattern, df.columns[1].to_string())
+        st.write(result)
         text += '\n'.join([
-            "*Spectrum, " + " name=" +str(file_name)+str(result[0]) +", type=ACCELERATION",
+            "*Spectrum, " + " name=" +str(file_name)+"_"+str(result[1]) +", type=ACCELERATION",
             data_csv,
             "**---------------------------------------------------",
             '\n\n'
