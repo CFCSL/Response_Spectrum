@@ -48,7 +48,7 @@ x = np.linspace(0.01,T_max , 200)
 fig, ax = plt.subplots()
 for k in SiteClass:
 
-    ax.plot(x, RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k), label=k)
+    ax.plot(x, RS.AASHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k), label=k)
 
     ax.legend()
     #ax.set_title("Design Response Spectrum"+ "PGA=",PGA, + "$S_S$=", S_S, + "$S_1$=", S_1, + "Site Class=", SiteClass)
