@@ -41,7 +41,7 @@ def download_sofistik(list_df):
         df_rounded = df.round(4)
         
         # Create a string representation of the rounded DataFrame with columns separated by three spaces
-        data_csv = df_rounded.to_string(index=False, col_space=3)
+        data_csv = df_rounded.to_string(index=False, header=False, col_space=3)
         
         local_text += '\n'.join([
             "lc no " + "10" + str(i) + " type none titl 'Sa(T)-SOIL '" + str(df.columns[1]),
