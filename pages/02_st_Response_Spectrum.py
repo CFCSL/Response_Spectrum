@@ -74,7 +74,7 @@ st.write(df)
 
 # Download CSV
 hf.download_csv(df)
-hf.dowload_sofistik(list_df)
+hf.download_sofistik(list_df)
 
 
 
