@@ -64,7 +64,7 @@ list_df=[]
 for k in GroundType:
 	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	# Round all float columns to four decimal places
-	df_k=df_k.round(4)
+	#df_k=df_k.round(4)
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
 	# Append the df_k into the list

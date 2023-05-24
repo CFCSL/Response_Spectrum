@@ -71,7 +71,7 @@ for k in SiteClass:
 	df_k = pd.DataFrame({'Period[s]': x,
                          "C_sm"+"-"+str(k): RS.ASSHTO(x, PGA=PGA, S_S=S_S, S_1=S_1, SiteClass=k)})
 	# Round all float columns to four decimal places
-	df_k=df_k.round(4)
+	#df_k=df_k.round(4)
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
 	# Append the df_k into the list
