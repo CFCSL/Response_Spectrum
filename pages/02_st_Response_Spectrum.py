@@ -69,7 +69,7 @@ for k in GroundType:
 	df = pd.merge(df, df_k, on="Period[s]")
 	# Append the df_k into the list
 	list_df.append(df_k)
-
+df=df.round(4)
 st.write(df)
 
 # Download CSV

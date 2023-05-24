@@ -77,6 +77,7 @@ for k in SiteClass:
 	# Append the df_k into the list
 	list_df.append(df_k)
 
+df=df.round(4)
 st.write(df)
 
 # Download CSV
