@@ -16,6 +16,7 @@ from io import BytesIO
 import base64
 
 
+st.header("EC8")
 
 st.write('**Direction:**')
 Dir=st.radio("Select Direction:", ("Horizontal", "Vertical"))
