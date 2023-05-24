@@ -81,8 +81,8 @@ df=df.round(4)
 st.write(df)
 
 # Download CSV
-hf.download_csv(df)
-hf.download_sofistik(list_df)
+hf.download_csv(df,file_name="ASSHTO")
+hf.download_sofistik(list_df,file_name="ASSHTO")
 
 
 

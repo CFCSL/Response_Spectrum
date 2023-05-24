@@ -18,18 +18,18 @@ from io import BytesIO
 
 #%% Download CSV
 
-def download_csv(df):
+def download_csv(df,file_name):
 
     data_csv = df.to_csv(index=False, float_format='%.4f')
     
     # Encode and create the download link
     b64 = base64.b64encode(data_csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="RS_ASSHTO.csv">Download CSV</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download={file_name}_RS.csv">Download CSV</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 
 
-def download_sofistik(list_df):
+def download_sofistik(list_df, file_name):
     text = '\n'.join([
         "+PROG SOFILOAD",
         "HEAD 'Definition of response spectrum'",
@@ -61,9 +61,9 @@ def download_sofistik(list_df):
     buffer.write(text_bytes)
     buffer.seek(0)
     
-    # Create the download link
+     # Create the download link
     b64 = base64.b64encode(buffer.read()).decode()
-    href = f'<a href="data:text/plain;base64,{b64}" download="RS_SOFISTIK.txt">Download Text</a>'
+    href = f'<a href="data:text/plain;base64,{b64}" download={file_name}_RS_SOFISTIK.txt">Download Text</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 
