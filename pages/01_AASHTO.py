@@ -78,14 +78,15 @@ for k in SiteClass:
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
 	df1 = pd.merge(df1, df1_k, on="Frequency[1/s]")
+	# sort column 'Frequency[1/s]' in ascending order
+	df1=df1.sort_values('Frequency[1/s]').round(4)
 	
 	# Append the df_k into the list
 	list_df.append(df_k)
 	list_df1.append(df1_k)
 
 df=df.round(4)
-# sort column 'Frequency[1/s]' in ascending order
-df1=df1.sort_values('Frequency[1/s]').round(4)
+
 
 st.write(df)
 

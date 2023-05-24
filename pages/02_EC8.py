@@ -67,8 +67,13 @@ for k in GroundType:
 	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	df1_k=pd.DataFrame({'Frequency[1/s]':(1/x),'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	
+	
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
+	df1 = pd.merge(df1, df1_k, on="Frequency[1/s]")
+	
+	# sort column 'Frequency[1/s]' in ascending order
+	df1=df1.sort_values('Frequency[1/s]').round(4)
 	
 	# Append the df_k into the list
 	
@@ -77,8 +82,7 @@ for k in GroundType:
 	
 	
 df=df.round(4)
-# sort column 'Frequency[1/s]' in ascending order
-df1=df1.sort_values('Frequency[1/s]').round(4)
+
 st.write(df)
 
 # Download CSV
