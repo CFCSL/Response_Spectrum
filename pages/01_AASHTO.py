@@ -84,6 +84,7 @@ for k in SiteClass:
 	list_df1.append(df1_k)
 
 df=df.round(4)
+# sort column 'Frequency[1/s]' in ascending order
 df1=df1.sort_values('Frequency[1/s]').round(4)
 
 st.write(df)
