@@ -76,7 +76,7 @@ def download_abaqus(list_df, file_name):
         df_rounded = df.round(4)
         
         # Create a string representation of the rounded DataFrame with columns separated by three spaces
-        data_csv = df_rounded.to_string(index=False, header=False, col_space=3)
+        data_csv = df_rounded.to_string(index=False, header=False)
         pattern = r'[A-Z]'
         result = re.findall(pattern, df.columns[1])
         text += '\n'.join([
