@@ -76,8 +76,9 @@ for k in GroundType:
 	list_df1.append(df1_k)
 	
 	
-df=df.round(5)
-df1=df1.sort_values(by=['Frequency[1/s]'],ascending=False).round(5)
+df=df.round(4)
+# sort column 'Frequency[1/s]' in ascending order
+df1=df1.sort_values('Frequency[1/s]').round(4)
 st.write(df)
 
 # Download CSV

@@ -20,7 +20,7 @@ from io import BytesIO
 
 def download_csv(df,file_name):
 
-    data_csv = df.to_csv(index=False, float_format='%.5f')
+    data_csv = df.to_csv(index=False, float_format='%.4f')
     
     # Encode and create the download link
     b64 = base64.b64encode(data_csv.encode()).decode()
@@ -38,7 +38,7 @@ def download_sofistik(list_df, file_name):
     local_text = ""
     for i, df in enumerate(list_df, 1):
         # Round the DataFrame columns to four decimal places
-        df_rounded = df.round(5)
+        df_rounded = df.round(4)
         
         # Create a string representation of the rounded DataFrame with columns separated by three spaces
         data_csv = df_rounded.to_string(index=False, header=False, col_space=3)
@@ -73,7 +73,7 @@ def download_abaqus(list_df, file_name):
     text = ""
     for i, df in enumerate(list_df, 1):
         # Round the DataFrame columns to four decimal places
-        df_rounded = df.round(5)
+        df_rounded = df.round(4)
         
         # Create a string representation of the rounded DataFrame with columns separated by commas
         data_csv = df_rounded.to_csv(index=False, header=False, sep=',')
