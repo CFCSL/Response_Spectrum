@@ -39,7 +39,7 @@ def download_sofistik(list_df):
     ])
     local_text = ""
     for i, df in enumerate(list_df, 1):
-        data_csv = df.to_csv(index=False, float_format='%.4f')
+        data_csv = df.to_csv(index=False, float_format='%.4f',sep='   ')
         local_text += '\n'.join([
             "lc no " + "10"+ str(i) + " type none titl 'Sa(T)-SOIL '" + str(df.columns[1]),
             "resp type user mod 5[%] ag 10",
