@@ -15,4 +15,4 @@ import base64
 from io import BytesIO
 import Response_Spectrum as RS
 
-st.write("Response Spectrum  E8 and ASSHTO")
+st.write("Response Spectrum  E8 and AASHTO")
