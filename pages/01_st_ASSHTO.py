@@ -75,7 +75,7 @@ for k in SiteClass:
 	# Merge df and df_k on the "Frequency[1/s]" column
 	df = pd.merge(df, df_k, on="Period[s]")
 	# Append the df_k into the list
-	list_df=list_df.append(df_k)
+	list_df.append(df_k)
 
 st.write(df)
 
