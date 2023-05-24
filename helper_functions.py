@@ -44,7 +44,7 @@ def download_sofistik(list_df, file_name):
         data_csv = df_rounded.to_string(index=False, header=False, col_space=3)
         
         local_text += '\n'.join([
-            "lc no " + "10" + str(i) + " type none titl 'Sa(T)-SOIL '" + str(df.columns[1]),
+            "lc no " + "10" + str(i) + " type none titl 'Sa(T)-SOIL " + str(df.columns[1]) +"'",
             "resp type user mod 5[%] ag 10",
             "ACCE DIR AX 1",
             "FUNC   T   F",
