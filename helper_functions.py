@@ -24,7 +24,6 @@ def download_csv(df,file_name):
     
     # Encode and create the download link
     b64 = base64.b64encode(data_csv.encode()).decode()
-    #href = f'<a href="data:file/csv;base64,{b64}" download=str(file_name)+".csv">Download CSV</a>'
     href = f'<a href="data:file/csv;base64,{b64}" download="{file_name}.csv">Download CSV</a>'
     st.markdown(href, unsafe_allow_html=True)
 
@@ -64,7 +63,7 @@ def download_sofistik(list_df, file_name):
     
      # Create the download link
     b64 = base64.b64encode(buffer.read()).decode()
-    href = f'<a href="data:text/plain;base64,{b64}" download={file_name}_RS_SOFISTIK.txt">Download Text</a>'
+    href = f'<a href="data:text/plain;base64,{b64}" download="{file_name}_RS_SOFISTIK.txt">Download Text</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 
