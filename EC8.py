@@ -46,11 +46,11 @@ def EC8(T,ag=0.5,GroundType='A',Eta=1,Dir='Horizontal',RS_Type=1):
 ## Eurocode Elastic Design Spectrum (Type 1):
 
 x = np.linspace(0, 10, 200)
-plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A')
-plt.plot(x,seismic.EC8(x,GroundType='B',Dir='Horizontal',RS_Type=1),label='B')
-plt.plot(x,seismic.EC8(x,GroundType='C',Dir='Horizontal',RS_Type=1),label='C')
-plt.plot(x,seismic.EC8(x,GroundType='D',Dir='Horizontal',RS_Type=1),label='D')
-plt.plot(x,seismic.EC8(x,GroundType='E',Dir='Horizontal',RS_Type=1),label='E')
+plt.plot(x,EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A')
+plt.plot(x,EC8(x,GroundType='B',Dir='Horizontal',RS_Type=1),label='B')
+plt.plot(x,EC8(x,GroundType='C',Dir='Horizontal',RS_Type=1),label='C')
+plt.plot(x,EC8(x,GroundType='D',Dir='Horizontal',RS_Type=1),label='D')
+plt.plot(x,EC8(x,GroundType='E',Dir='Horizontal',RS_Type=1),label='E')
 plt.legend()
 plt.show()
 
@@ -58,24 +58,24 @@ plt.show()
 ## Eurocode Elastic Design Spectrum (Type 2):
 
 x = np.linspace(0.01, 10, 200)
-plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=2),label='A')
-plt.plot(x,seismic.EC8(x,GroundType='B',Dir='Horizontal',RS_Type=2),label='B')
-plt.plot(x,seismic.EC8(x,GroundType='C',Dir='Horizontal',RS_Type=2),label='C')
-plt.plot(x,seismic.EC8(x,GroundType='D',Dir='Horizontal',RS_Type=2),label='D')
-plt.plot(x,seismic.EC8(x,GroundType='E',Dir='Horizontal',RS_Type=2),label='E')
+plt.plot(x,EC8(x,GroundType='A',Dir='Horizontal',RS_Type=2),label='A')
+plt.plot(x,EC8(x,GroundType='B',Dir='Horizontal',RS_Type=2),label='B')
+plt.plot(x,EC8(x,GroundType='C',Dir='Horizontal',RS_Type=2),label='C')
+plt.plot(x,EC8(x,GroundType='D',Dir='Horizontal',RS_Type=2),label='D')
+plt.plot(x,EC8(x,GroundType='E',Dir='Horizontal',RS_Type=2),label='E')
 plt.legend()
 plt.show()
 
 ## Eurocode Elastic Design Spectrum (Type 1 & 2 -Vertical):
 ## Vertical is similar for all Soil types
 x = np.linspace(0, 10, 200)
-plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Vertical',RS_Type=1),label='Type 1')
-plt.plot(x,seismic.EC8(x,GroundType='A',Dir='Vertical',RS_Type=2),label='Type 2')
+plt.plot(x,EC8(x,GroundType='A',Dir='Vertical',RS_Type=1),label='Type 1')
+plt.plot(x,EC8(x,GroundType='A',Dir='Vertical',RS_Type=2),label='Type 2')
 plt.legend()
 plt.show()
 
 
 ## Export the RS to csv in Abaqus input format¶
-A=pd.DataFrame({'Amplitude':seismic.EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1)*9.81,'Frequency':(1/x),'Damping':0})
+A=pd.DataFrame({'Amplitude':EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1)*9.81,'Frequency':(1/x),'Damping':0})
 A=A.sort_values(by=['Frequency']).round(5)
 A.to_csv('RS_EC8_A_Horizontal.inp',index=False,header=False)
