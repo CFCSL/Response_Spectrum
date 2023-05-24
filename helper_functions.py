@@ -80,7 +80,7 @@ def download_abaqus(list_df, file_name):
         pattern = r'[A-Z]'
         result = re.findall(pattern, df.columns[1])
         text += '\n'.join([
-            "*Spectrum, " + " name=" +str(file_name)+str(result) +"type=ACCELERATION",
+            "*Spectrum, " + " name=" +str(file_name)+str(result[0]) +", type=ACCELERATION",
             data_csv,
             "**---------------------------------------------------",
             '\n\n'
