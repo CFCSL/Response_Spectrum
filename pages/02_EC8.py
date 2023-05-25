@@ -18,6 +18,14 @@ import base64
 
 st.header("EC8")
 
+
+
+
+st.image("figures/Type_1.jpeg")
+st.image("figures/Type_2.jpeg")
+st.image("figures/Vertical.jpeg")
+
+
 st.write('**Direction:**')
 Dir=st.radio("Select Direction:", ("Horizontal", "Vertical"))
 
@@ -38,7 +46,7 @@ st.write("Period T(s)")
 
 st.write("select the range of T(s) to plot:")
 
-T_max=st.number_input("T_max(s)", value= 10., min_value=1., step=1., format="%.3f")
+T_max=st.number_input("T_max(s)", value= 6., min_value=1., step=1., format="%.3f")
 x = np.linspace(0.01,T_max , 200)
 
 # Create the plot

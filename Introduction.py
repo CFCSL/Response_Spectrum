@@ -26,6 +26,7 @@ The response spectrum shall be calculated using the peak ground acceleration coe
 
 """)
 
+st.image("figures/Fig_1.jpeg")
 
 
 
@@ -35,7 +36,10 @@ st.subheader("EC8 ")
 
 
 
-
+st.markdown("""for references see: \n
+-  AASHTO LRFD BRIDGE DESIGN SPECIFICATIONS. Seventh edition, 2014, U.S. Customary Units, pp.3.91–3.93.
+-  Eurocode 8: Design of structures for earthquake resistance EN 1998-1:2004(E) pp. 36-42.
+""")
 
 
 

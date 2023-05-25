@@ -40,12 +40,13 @@ def EC8(T,ag=0.5,GroundType='A',Eta=1,Dir='Horizontal',RS_Type=1):
 	condList=[(0<=T)&(T<TB),(TB<=T)&(T<=TC),(TC<T)&(T<=TD),TD<T]
 	funcList=[lambda T: aa*S*(1+(T/TB)*(Eta*_dir_coeff-1)),lambda T: aa*S*Eta*_dir_coeff,lambda T: aa*S*Eta*_dir_coeff*(TC/T),lambda T: aa*S*Eta*_dir_coeff*((TC*T)/T**2)]
 	Amp=np.piecewise(T, condList, funcList)
-	return Amp
+	return Amp # has the unit=[...]
 
 
 ## Eurocode Elastic Design Spectrum (Type 1):
-
+ag=0.5
 x = np.linspace(0, 10, 200)
+plt.plot(x,1/ag*EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A1')
 plt.plot(x,EC8(x,GroundType='A',Dir='Horizontal',RS_Type=1),label='A')
 plt.plot(x,EC8(x,GroundType='B',Dir='Horizontal',RS_Type=1),label='B')
 plt.plot(x,EC8(x,GroundType='C',Dir='Horizontal',RS_Type=1),label='C')
