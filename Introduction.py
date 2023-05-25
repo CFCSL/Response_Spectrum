@@ -15,14 +15,14 @@ import base64
 from io import BytesIO
 import Response_Spectrum as RS
 
-st.header("Response Spectrum  AASHTO and EC8")
+st.title("Response Spectrum  AASHTO and EC8")
 
 
-st.subheader("Response Spectrum  AASHTO ")
+st.subheader("AASHTO ")
 
 st.markdown("""
-			
-The response spectrum shall be calculated using the peak ground acceleration coefficient and the spectral acceleration coefficients scaled by the zero-, short- abd long-period site factors, $F_{pga}$, $F_a$ and $F_v$, respectively.
+
+The response spectrum shall be calculated using the peak ground acceleration coefficient and the spectral acceleration coefficients scaled by the zero-, short- and long-period site factors, $F_{pga}$, $F_a$ and $F_v$, respectively.
 
 """)
 
@@ -30,7 +30,8 @@ The response spectrum shall be calculated using the peak ground acceleration coe
 
 
 
-st.subheader("Response Spectrum  EC8 ")
+
+st.subheader("EC8 ")
 
 
 
