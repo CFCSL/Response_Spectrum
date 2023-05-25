@@ -15,4 +15,32 @@ import base64
 from io import BytesIO
 import Response_Spectrum as RS
 
-st.write("Response Spectrum  E8 and AASHTO")
+st.header("Response Spectrum  AASHTO and EC8")
+
+
+st.subheader("Response Spectrum  AASHTO ")
+
+st.markdown("""
+			
+The response spectrum shall be calculated using the peak ground acceleration coefficient and the spectral acceleration coefficients scaled by the zero-, short- abd long-period site factors, $F_{pga}$, $F_a$ and $F_v$, respectively.
+
+""")
+
+
+
+
+
+st.subheader("Response Spectrum  EC8 ")
+
+
+
+
+
+
+
+st.markdown("""
+---
+- The program developed by: 		Pedram Manouchehri & Nam Nguyen 
+- User interface developed by:	Nam Nguyen 
+- Independently Checked by:		-
+""")
