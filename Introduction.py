@@ -22,7 +22,7 @@ st.subheader("AASHTO ")
 
 st.markdown("""
 
-The response spectrum shall be calculated using the peak ground acceleration coefficient and the spectral acceleration coefficients scaled by the zero-, short- and long-period site factors, $F_{pga}$, $F_a$ and $F_v$, respectively.
+The response spectrum shall be calculated using the peak ground acceleration coefficient and the spectral acceleration coefficients scaled by the zero-, short- and long-period site factors, $F_{pga}$, $F_a$ and $F_v$ respectively.
 
 """)
 
