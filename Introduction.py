@@ -35,9 +35,7 @@ st.image("figures/Fig_1.jpeg")
 st.subheader("EC8 ")
 
 st.markdown("""
-
-Horizontal elastic respone spectrum are calculated and ploted for two recommended Types (Type 1, Type 2) and for ground types A to E (5% damping).
-However,in EN 1998-1:2004 (E), for vertical seismic, all 5 ground types A, B, C, D and E have the same vertical spectrum.
+Horizontal elastic response spectra are calculated and plotted for two recommended types (Type 1 and Type 2) and for ground types A to E (5% damping). However, for vertical seismic (EN 1998-1:2004 (E)), all 5 ground types A, B, C, D and E have the same vertical spectrum
 
 """)
 st.image("figures/Fig_2.jpeg")
