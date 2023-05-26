@@ -28,17 +28,33 @@ The response spectrum shall be calculated using the peak ground acceleration coe
 
 st.image("figures/Fig_1.jpeg")
 
+st.markdown("""
+			Site Factors $F_{pga}$, $F_a$ and $F_v$ specified in Tables 3.10.3.2-1, 3.10.3.2-2, and 3.10.3.2-3 shall be used in the zero-period, short-period range, and long-period range, respectively. These factors shall be determined using the Site Class given in Table 3.10.3.1-1 and the mapped values of the coefficients PGA, SS, and S1.
+			""")
+st.image("figures/PGA.jpeg")
+st.image("figures/SS.jpeg")
+st.image("figures/S1.jpeg")
 
 
 
 
-st.subheader("II. EC8 ")
+
+st.subheader("II. Eurocode 8 ")
 
 st.markdown("""
 Horizontal elastic response spectra are calculated and plotted for two recommended types (Type 1 and Type 2) and for ground types A to E (5% damping). However, for vertical seismic (EN 1998-1:2004 (E)), all 5 ground types A, B, C, D and E have the same vertical spectrum.
 
 """)
 st.image("figures/Fig_2.jpeg")
+
+
+st.subheader("Horizontal elastic response spectrum")
+st.image("figures/Type_1.jpeg")
+st.image("figures/Type_2.jpeg")
+
+st.subheader("Vertical elastic response spectrum")
+st.image("figures/Vertical.jpeg")
+
 
 
 

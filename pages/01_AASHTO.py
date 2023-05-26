@@ -19,12 +19,7 @@ import base64
 
 st.header("AASHTO")
 
-st.markdown("""
-			Site Factors $F_{pga}$, $F_a$ and $F_v$ specified in Tables 3.10.3.2-1, 3.10.3.2-2, and 3.10.3.2-3 shall be used in the zero-period, short-period range, and long-period range, respectively. These factors shall be determined using the Site Class given in Table 3.10.3.1-1 and the mapped values of the coefficients PGA, SS, and S1.
-			""")
-st.image("figures/PGA.jpeg")
-st.image("figures/SS.jpeg")
-st.image("figures/S1.jpeg")
+
 
 
 st.write("**Peak Ground Acceleration:**")

@@ -16,16 +16,9 @@ from io import BytesIO
 import base64
 
 
-st.header("EC8")
+st.header("Eurocode 8")
 
 
-
-st.subheader("Horizontal elastic response spectrum")
-st.image("figures/Type_1.jpeg")
-st.image("figures/Type_2.jpeg")
-
-st.subheader("Vertical elastic response spectrum")
-st.image("figures/Vertical.jpeg")
 
 
 st.write('**Direction:**')
