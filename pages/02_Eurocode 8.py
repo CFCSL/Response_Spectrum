@@ -30,7 +30,7 @@ RS_Type = st.radio("Response Spectrum Type", ["Type 1", "Type 2"], index=0)
 RS_Type_value = 1 if RS_Type == "Type 1" else 2
 
 
-st.write("Ground Type: ")
+st.write("G**round Type**: ")
 options=["A","B","C","D","E"]
 default_options = options  # Set all options as default
 GroundType=st.multiselect("Select options:", options, default=default_options)
@@ -38,7 +38,7 @@ GroundType=st.multiselect("Select options:", options, default=default_options)
 
 a_g=st.number_input("a_g [$m/s^2$]", value= 0.5, min_value=0.0, step=0.1, format="%.3f")
 
-st.write("Period T[s]")
+st.write("**Period T[s]**")
 
 
 T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., format="%.3f")

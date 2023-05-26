@@ -33,7 +33,7 @@ S_1=st.number_input("$S_1$",value= 0.1, min_value=0.0, step=0.05, format="%.3f")
 
 
 
-st.write("Site Class: ")
+st.write("**Site Class**: ")
 options=["A","B","C","D","E","F"]
 default_options = ["A","B","C","D","E"]  # Set all options as default
 SiteClass=st.multiselect("Select options:", options, default=default_options)
@@ -47,7 +47,7 @@ except:
 	pass
 
 
-st.write("Period T[s]")
+st.write("**Period T[s]**")
 
 T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., format="%.3f")
 x = np.linspace(0.01,T_max , 200)
