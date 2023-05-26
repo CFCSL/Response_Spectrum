@@ -70,6 +70,7 @@ def AASHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	SiteFactor['Zero_Period']['C']=[1.2,1.2,1.1,1.0,1.0]
 	SiteFactor['Zero_Period']['D']=[1.6,1.4,1.2,1.1,1.0]
 	SiteFactor['Zero_Period']['E']=[2.5,1.7,1.2,0.9,0.9]
+	SiteFactor['Zero_Period']['F']=["*","*","*","*","*"]
 	   
 	#F_a
 	SiteFactor['Short_Period']['A']=[0.8,0.8,0.8,0.8,0.8]
@@ -77,6 +78,7 @@ def AASHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	SiteFactor['Short_Period']['C']=[1.2,1.2,1.1,1.0,1.0]
 	SiteFactor['Short_Period']['D']=[1.6,1.4,1.2,1.1,1.0]
 	SiteFactor['Short_Period']['E']=[2.5,1.7,1.2,0.9,0.9]
+	SiteFactor['Short_Period']['F']=["*","*","*","*","*"]
 	   
 	#F_v
 	SiteFactor['Long_Period']['A']=[0.8,0.8,0.8,0.8,0.8]
@@ -84,6 +86,7 @@ def AASHTO(T, PGA,S_S,S_1,SiteClass): #col is position =0/1/2/3/4
 	SiteFactor['Long_Period']['C']=[1.7,1.6,1.5,1.4,1.3]
 	SiteFactor['Long_Period']['D']=[2.4,2.0,1.8,1.6,1.5]
 	SiteFactor['Long_Period']['E']=[3.5,3.2,2.8,2.4,2.4]
+	SiteFactor['Long_Period']['F']=["*","*","*","*","*"]
 
 	def f(x,a,b,Fa,Fb):
 		return Fa+(Fb-Fa)/(b-a)*(x-a)
