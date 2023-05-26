@@ -54,5 +54,5 @@ st.markdown("""
 ---
 - The program developed by: 		Pedram Manouchehri & Nam Nguyen 
 - User interface developed by:	Nam Nguyen 
-- Independently Checked by:		-
+- Independently Checked by:		Fernando Ávila
 """)
