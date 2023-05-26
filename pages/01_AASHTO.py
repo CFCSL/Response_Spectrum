@@ -39,9 +39,11 @@ S_1=st.number_input("$S_1$",value= 0.1, min_value=0.0, step=0.05, format="%.3f")
 
 
 st.write("Site Class: ")
-options=["A","B","C","D","E"]
+options=["A","B","C","D","E","F"]
 default_options = options  # Set all options as default
 SiteClass=st.multiselect("Select options:", options, default=default_options)
+if SiteClass=="F":
+	st.warning("Site-specific geotechnical investigation and dynamic site response analysis should be performed for all sites in Site Class F")
 
 
 st.write("Period T[s]")
