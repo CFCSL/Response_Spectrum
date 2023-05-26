@@ -42,11 +42,10 @@ GroundType=st.multiselect("Select options:", options, default=default_options)
 
 a_g=st.number_input("a_g [$m/s^2$]", value= 0.5, min_value=0.0, step=0.1, format="%.3f")
 
-st.write("Period T(s)")
+st.write("Period T[s]")
 
-st.write("select the range of T(s) to plot:")
 
-T_max=st.number_input("T_max(s)", value= 6., min_value=1., step=1., format="%.3f")
+T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., format="%.3f")
 x = np.linspace(0.01,T_max , 200)
 
 # Create the plot
@@ -59,7 +58,7 @@ for k in GroundType:
     ax.set_title(Dir)
     
 # Set the x-axis and y-axis labels
-ax.set_xlabel('T(s)')
+ax.set_xlabel('T[s]')
 ax.set_ylabel('$S_e/a_g$')
 
 # Display the plot in Streamlit

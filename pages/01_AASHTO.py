@@ -20,7 +20,7 @@ import base64
 st.header("AASHTO")
 
 st.markdown("""
-			Site Factors $F_{pga}$, $F_a$ and $Fv$_ specified in Tables 3.10.3.2-1, 3.10.3.2-2, and 3.10.3.2-3 shall be used in the zero-period, short-period range, and long-period range, respectively. These factors shall be determined using the Site Class given in Table 3.10.3.1-1 and the mapped values of the coefficients PGA, SS, and S1.
+			Site Factors $F_{pga}$, $F_a$ and $F_v$ specified in Tables 3.10.3.2-1, 3.10.3.2-2, and 3.10.3.2-3 shall be used in the zero-period, short-period range, and long-period range, respectively. These factors shall be determined using the Site Class given in Table 3.10.3.1-1 and the mapped values of the coefficients PGA, SS, and S1.
 			""")
 st.image("figures/PGA.jpeg")
 st.image("figures/SS.jpeg")
@@ -44,11 +44,9 @@ default_options = options  # Set all options as default
 SiteClass=st.multiselect("Select options:", options, default=default_options)
 
 
-st.write("Period T(s)")
+st.write("Period T[s]")
 
-st.write("select the range of T(s) to plot:")
-
-T_max=st.number_input("T_max(s)", value= 6., min_value=1., step=1., format="%.3f")
+T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., format="%.3f")
 x = np.linspace(0.01,T_max , 200)
 
 
@@ -63,7 +61,7 @@ for k in SiteClass:
     ax.set_title("Design Response Spectrum PGA={}, $S_S$={}, $S_1$={}, Site Class={}".format(PGA, S_S, S_1, SiteClass))
     
 # Set the x-axis and y-axis labels
-ax.set_xlabel('T(s)')
+ax.set_xlabel('T[s]')
 ax.set_ylabel('$C_{sm}$')
 
 # Display the plot in Streamlit
