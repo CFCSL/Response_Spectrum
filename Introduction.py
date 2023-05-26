@@ -15,7 +15,7 @@ import base64
 from io import BytesIO
 import Response_Spectrum as RS
 
-st.title("Response Spectrum  AASHTO and EC8")
+st.title("Response Spectrum  AASHTO and Eurocode 8")
 
 
 st.subheader("I. AASHTO ")
