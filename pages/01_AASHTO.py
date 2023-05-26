@@ -44,6 +44,11 @@ default_options = ["A","B","C","D","E"]  # Set all options as default
 SiteClass=st.multiselect("Select options:", options, default=default_options)
 if "F" in SiteClass:
 	st.warning("Site-specific geotechnical investigation and dynamic site response analysis should be performed for all sites in Site Class F")
+	
+try:
+	SiteClass.remove("F")
+except:
+	pass
 
 st.write("Period T[s]")
 
