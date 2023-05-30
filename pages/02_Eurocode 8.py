@@ -51,11 +51,26 @@ for k in GroundType:
     ax.plot(x, 1/a_g*RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
 
     ax.legend()
-    ax.set_title(Dir)
+    ax.set_title(f"{Dir} elastic response spectra")
     
 # Set the x-axis and y-axis labels
 ax.set_xlabel('T[s]')
 ax.set_ylabel('$S_e/a_g$')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
+
+
+for k in GroundType:
+
+    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
+
+    ax.legend()
+    ax.set_title(f"{Dir}- elastic response spectra of amplitude acceleration vs period")
+    
+# Set the x-axis and y-axis labels
+ax.set_xlabel('T[s]')
+ax.set_ylabel('$S_e$')
 
 # Display the plot in Streamlit
 st.pyplot(fig)
@@ -67,8 +82,8 @@ list_df=[]
 list_df1=[]
 # create interations
 for k in GroundType:
-	df_k=pd.DataFrame({'Period[s]':x,'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
-	df1_k=pd.DataFrame({'Frequency[1/s]':(1/x),'Amplitude'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	df_k=pd.DataFrame({'Period[s]':x,'S_e'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	df1_k=pd.DataFrame({'Frequency[1/s]':(1/x),'S_e'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	# sort column 'Frequency[1/s]' in ascending order
 	df1_k=df1_k.sort_values('Frequency[1/s]').round(4)
 	
