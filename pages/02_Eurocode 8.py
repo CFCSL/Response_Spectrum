@@ -61,19 +61,6 @@ ax.set_ylabel('$S_e/a_g$')
 st.pyplot(fig)
 
 
-for k in GroundType:
-
-    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
-
-    ax.legend()
-    ax.set_title(f"{Dir}- elastic response spectra of amplitude acceleration vs period")
-    
-# Set the x-axis and y-axis labels
-ax.set_xlabel('T[s]')
-ax.set_ylabel('$S_e$')
-
-# Display the plot in Streamlit
-st.pyplot(fig)
 
 
 # Create an empty dataframe
