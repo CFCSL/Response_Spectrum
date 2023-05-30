@@ -54,12 +54,12 @@ for k in GroundType:
 ax1.legend()
 ax1.set_title(f"{Dir}-elastic response spectra")
 ax1.set_xlabel('T[s]')
-ax1.set_ylabel('$S_e$')
+ax1.set_ylabel('$S_e/a_g$')
 
 ax2.legend()
 ax2.set_title(f"{Dir}-elastic response spectra of amplitude acceleration vs period")
 ax2.set_xlabel('T[s]')
-ax2.set_ylabel('$S_e/a_g$')
+ax2.set_ylabel('$S_e$')
 
 # Adjust spacing between subplots
 plt.tight_layout()
