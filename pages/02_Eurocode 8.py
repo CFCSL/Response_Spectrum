@@ -45,35 +45,30 @@ T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., forma
 x = np.linspace(0.01,T_max , 200)
 
 # Create the plot
-fig, ax = plt.subplots()
+fig, (ax1, ax2) = plt.subplots(2, 1)
+
 for k in GroundType:
+    ax1.plot(x, 1/a_g*RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
+    ax2.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
 
-    ax.plot(x, 1/a_g*RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
+ax1.legend()
+ax1.set_title(f"{Dir}-elastic response spectra")
+ax1.set_xlabel('T[s]')
+ax1.set_ylabel('$S_e$')
 
-    ax.legend()
-    ax.set_title(f"{Dir} elastic response spectra")
-    
-# Set the x-axis and y-axis labels
-ax.set_xlabel('T[s]')
-ax.set_ylabel('$S_e/a_g$')
+ax2.legend()
+ax2.set_title(f"{Dir}-elastic response spectra of amplitude acceleration vs period")
+ax2.set_xlabel('T[s]')
+ax2.set_ylabel('$S_e/a_g$')
+
+# Adjust spacing between subplots
+plt.tight_layout()
 
 # Display the plot in Streamlit
 st.pyplot(fig)
 
 
-for k in GroundType:
 
-    ax.plot(x, RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
-
-    ax.legend()
-    ax.set_title(f"{Dir}- elastic response spectra of amplitude acceleration vs period")
-    
-# Set the x-axis and y-axis labels
-ax.set_xlabel('T[s]')
-ax.set_ylabel('$S_e$')
-
-# Display the plot in Streamlit
-st.pyplot(fig)
 
 
 # Create an empty dataframe
