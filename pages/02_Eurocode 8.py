@@ -77,7 +77,7 @@ list_df=[]
 list_df1=[]
 # create interations
 for k in GroundType:
-	df_k=pd.DataFrame({'Period[s]':x,'S_e'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
+	df_k=pd.DataFrame({'Period[s]':x,'S_e'+"-"+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	df1_k=pd.DataFrame({'Frequency[1/s]':(1/x),'S_e'+" "+str(k):RS.EC8(x,GroundType=k,Dir=Dir,RS_Type=RS_Type_value)*9.81})
 	# sort column 'Frequency[1/s]' in ascending order
 	df1_k=df1_k.sort_values('Frequency[1/s]').round(4)
