@@ -45,7 +45,7 @@ T_max=st.number_input("Select T_max[s]", value= 6., min_value=1., step=1., forma
 x = np.linspace(0.01,T_max , 200)
 
 # Create the plot
-fig, (ax1, ax2) = plt.subplots(2, 1,figsize=(8, 10))
+fig, (ax1, ax2) = plt.subplots(2, 1,figsize=(6, 10))
 
 for k in GroundType:
     ax1.plot(x, 1/a_g*RS.EC8(x, GroundType=k, Dir=Dir, RS_Type=RS_Type_value), label=k)
